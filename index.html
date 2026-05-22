@@ -2,8 +2,6 @@
 <html>
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
@@ -47,6 +45,16 @@ body {
 }
 
 .card {
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1000;
+
     background: rgba(255, 255, 255, 0.1);
 
     padding: 50px;
@@ -63,7 +71,8 @@ body {
 
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
 
-    border: 10px solid rgba(225, 116, 154)
+    border: 10px solid rgba(225, 116, 154);
+
 }
 
 button {
@@ -106,10 +115,19 @@ button {
 
 }
 
-#wrongScreen {
+#wrongScreen,
+#noScreen{
 
     display: none;
 
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
 }
 
 #loadingScreen {
@@ -171,11 +189,6 @@ button {
 
 }
 
-#noScreen {
-
-    display: none;
-
-}
 
 #letter {
 
@@ -728,7 +741,7 @@ top: 0px;
 
     width: 100%;
 
-    margin-top: 20px;
+    margin-top: 80px;
 
     display: flex;
     flex-direction: column;
@@ -751,6 +764,8 @@ top: 0px;
     padding-left: 0px;
 
     margin-left: -190px;
+
+     margin-top: 80px;
 }
 
 /* ВИНИЛ */
@@ -998,7 +1013,7 @@ top: 0px;
 
     left: -180px;
 
-    margin-bottom: -40px;
+    margin-bottom: 10px;
 }
 
 .right-letter{
@@ -1007,7 +1022,7 @@ top: 0px;
 
     left: 180px;
 
-    margin-top: -40px;
+    margin-top: 10px;
 }
 
 @keyframes letterAppear{
@@ -1040,7 +1055,7 @@ top: 0px;
 
 .middle-hearts{
 
-    width: 120px;
+    width: 200px;
 
     opacity: 0.95;
 
@@ -1064,7 +1079,7 @@ top: 0px;
 
 .music-hearts{
 
-    width: 100%;
+     width: 100%;
 
     display: flex;
 
@@ -1081,7 +1096,7 @@ top: 0px;
 
 .music-hearts-img{
 
-    width: 90px;
+    width: 200px;
 
     opacity: 0.9;
 
@@ -1398,20 +1413,23 @@ top: 0px;
 
 </div>
 
-</div>
-    
+</div> <!-- ЗАКРЫЛСЯ mainPage -->
+
+
+<!-- WRONG PASSWORD SCREEN -->
 <div class="card" id="wrongScreen">
 
     <img src="wrongpass.png" class="hug-image">
 
-    <h1>Неправильный пароль</h1>
+    <h1>Неправильный код</h1>
 
     <button onclick="tryAgain()">
         Повторить...
     </button>
 
-</div>    
+</div>
 
+<!-- NO SCREEN -->
 <div class="card" id="noScreen"> 
 
     <img src="broken.png" class="hug-image">

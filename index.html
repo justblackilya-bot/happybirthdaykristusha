@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
+ <style>
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -1;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    font-family: 'Cookie', cursive;
+
+    font-size: 25px;
+
+    text-shadow: 0 0 20px rgb(255, 255, 255);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+
+    padding: 50px;
+
+    border-radius: 100px;
+
+    backdrop-filter: blur(10px);
+
+    text-align: center;
+
+    color: rgba(225, 116, 154);
+
+    width: 400px;
+
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+
+    border: 10px solid rgba(225, 116, 154)
+}
+
+button {
+    margin-top: 20px;
+
+    padding: 25px 40px;
+
+    border: none;
+
+    border-radius: 100px;
+
+    background: rgba(225, 116, 154);
+
+    color: white;
+
+    font-family: 'Cookie', cursive;
+
+    font-size: 31px;
+
+    cursor: pointer;
+
+    margin: 20px;
+    
+    
+}
+
+#secondScreen {
+
+    display: none;
+
+}
+
+.hug-image {
+
+    width: 300px;
+
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+#wrongScreen {
+
+    display: none;
+
+}
+
+#loadingScreen {
+
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.5);
+
+    backdrop-filter: blur(10px);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+
+    flex-direction: column;
+
+}
+
+.loading-text {
+
+    color: rgb(255, 255, 255);
+
+    font-size: 150px;
+
+    animation: fade 3s ease;
+
+    text-shadow: 0 0 30px rgb(255, 255, 255);
+
+}
+
+@keyframes fade {
+
+    0% {
+
+        opacity: 0;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+    }
+
+}
+
+#noScreen {
+
+    display: none;
+
+}
+
+#letter {
+
+    display: none;
+
+    width: 500px;
+
+    cursor: pointer;
+
+    transition: 1s;
+
+    display: none;
+
+}
+
+#letter:hover {
+
+    transform: scale(1.1);
+
+}
+
+#thirdScreen {
+
+    display: none;
+
+}
+
+#mainPage {
+
+    display: none;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+
+    min-height: 100vh;
+
+    background-image: url("paper2.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    padding: 100px 200px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    overflow-x: visible;
+
+    color: black;
+
+    text-align: left;
+}
+
+#circleTransition {
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    width: 0px;
+    height: 0px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 999;
+
+    display: none;
+
+    transition: 1s; 
+
+}
+
+@keyframes shake {
+
+    0% {
+
+        transform: translateX(0px);
+
+    }
+
+    25% {
+
+        transform: translateX(-10px);
+
+    }
+
+    50% {
+
+        transform: translateX(10px);
+
+    }
+
+    75% {
+
+        transform: translateX(-10px);
+
+    }
+
+    100% {
+
+        transform: translateX(0px);
+
+    }
+
+}
+
+#clickText {
+
+    color: white;
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+    animation: pulse 2s infinite;
+
+    display: none;
+
+}
+
+@keyframes pulse {
+
+    0% {
+
+        opacity: 0.5;
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform: scale(1.1);
+
+    }
+
+    100% {
+
+        opacity: 0.5;
+
+        transform: scale(1);
+
+    }
+
+}
+
+.pin-display {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-top: 30px;
+
+    margin-bottom: 40px;
+
+}
+
+.dot {
+
+    width: 20px;
+
+    height: 20px;
+
+    border: 3px solid rgba(225, 116, 154);
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+
+}
+
+.dot.active {
+
+    background: rgba(225, 116, 154);
+
+    box-shadow: 0 0 15px rgba(225, 116, 154);
+}
+
+.keypad {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 95px);
+
+    gap: 8px;
+
+    justify-content: center;
+
+    margin-top: 20px;
+
+}
+
+.key {
+
+    width: 95px;
+
+    height: 85px;
+
+    border-radius: 18px;
+
+    border: none;
+
+    background: rgba(255,255,255,0.35);
+
+    color: rgba(225, 116, 154);
+
+    font-size: 34px;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 0;
+
+    margin: 0;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+    transition: 0.2s;
+
+}
+
+.key:hover {
+
+    transform: scale(1.05);
+
+}
+
+.delete {
+
+    font-size: 28px;
+
+}
+
+#birthdayTitle {
+
+    width: 1000px;
+
+    display: block;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    left: -160px;
+
+    top: -90px;
+
+    animation: titleAppear 2s ease;
+
+    z-index: 5;
+
+}
+
+@keyframes titleAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-50px) scale(0.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0px) scale(1);
+
+    }
+
+}
+
+#partyFlags {
+
+    position: absolute;
+
+    top: -20px;
+
+    left: -120px;
+
+    width: 700px;
+
+    transform: rotate(-9deg);
+
+    opacity: 0.95;
+
+    z-index: 6;
+
+}
+
+#memoryPhoto {
+
+    width: 700px;
+
+    display: block;
+
+    position: relative;
+
+left: -50px;
+
+top: 0px;
+
+    animation: photoAppear 2s ease;
+
+}
+
+@keyframes photoAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(50px) scale(0.9);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0px) scale(1);
+
+    }
+
+}
+
+#pinkRays {
+
+    position: absolute;
+
+    width: 120px;
+
+    top: 20px;          
+    right: 10px;    
+
+    transform: rotate(10deg);
+
+    z-index: 5;
+
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(4deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-4deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
+
+#balloons {
+
+    position: absolute;
+
+    top: 130px;
+
+    left: -40px;
+
+    width: 250px;
+
+    opacity: 0.85;
+
+    z-index: 1;
+
+    animation: balloonsFloat 4s ease-in-out infinite;
+
+}
+
+@keyframes balloonsFloat {
+
+    0% {
+        transform: translateX(-50%) translateY(0px) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0px) rotate(-1deg);
+    }
+
+}
+
+
+.frame-bow {
+
+    position: absolute;
+
+    width: 470px;
+
+    top: 600px;
+
+    left: -140px;
+
+    z-index: 5;
+
+    animation: frameAppear 1.8s ease;
+}
+
+.dream-text {
+
+    position: absolute;
+
+    width: 340px;
+
+    top: -130px;
+
+    left: 130px;
+
+    z-index: 5;
+
+    animation: frameAppear 1.8s ease;
+
+    
+}
+
+@keyframes frameAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.7) translateY(40px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1) translateY(0);
+
+    }
+
+}
+
+.section-divider {
+
+    display: block;
+
+    width: 120vw;
+
+    height: 110px;
+
+    object-fit: fill;
+
+    position: relative;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    margin-top: 70px;
+
+}
+
+.top-divider {
+
+    margin-top: -80px;
+
+    margin-bottom: 40px;
+
+}
+
+.top-text,
+.bottom-text {
+
+    position: absolute;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family: "Caveat", cursive;
+
+    font-size: 45px;
+
+    color: rgba(225, 116, 154);
+
+    text-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+    z-index: 5;
+
+}
+
+.top-text {
+
+    top: 536px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+}
+
+.bottom-text {
+
+    top: 1670px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+}
+
+.vinyl-section{
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 220px;
+}
+
+.vinyl-row{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 80px;
+
+    width: 100%;
+
+    justify-content: flex-start;
+
+    padding-left: 0px;
+
+    margin-left: -190px;
+}
+
+/* ВИНИЛ */
+
+.vinyl-player{
+
+    position: relative;
+
+    width: 420px;
+    height: 420px;
+
+    flex-shrink: 0;
+}
+
+
+
+.vinyl-disc{
+
+    width:420px;
+    height:420px;   
+
+    animation: spin 10s linear infinite;
+}
+
+
+
+@keyframes spin{
+
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+
+}
+
+
+
+/* КНОПКА В ЦЕНТРЕ */
+
+.vinyl-play{
+
+    position: absolute;
+
+    top: 45%;
+    left: 45%;
+
+    transform: translate(-50%, -50%);
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+
+.vinyl-play img{
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+
+/* ИНФА */
+
+.track-info{
+
+    flex: 1;
+
+    max-width: 750px;
+
+    min-width: 500px;
+
+    color: white;
+
+    text-align: left;
+
+    position: relative;
+
+    left: -70px;
+}
+
+
+
+.track-info h2{
+
+    font-size: 60px;
+
+    margin: 0;
+
+    font-family: Arial;
+
+}
+
+
+
+.artist{
+
+    font-size: 40px;
+
+    margin-top: 10px;
+
+    margin-bottom: 50px;
+
+    font-family: Arial;
+}
+
+
+
+/* ПОЛЗУНКИ */
+
+.slider-block{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+
+
+.music-slider{
+
+    appearance: none;
+
+    width: 100%;
+
+    height: 10px;
+
+    border-radius: 20px;
+
+    background: #f7cae2;
+
+    overflow: hidden;
+}
+
+
+
+.music-slider::-webkit-slider-thumb{
+
+    appearance: none;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+
+    border: 4px solid #ef7fad;
+}
+
+
+
+/* ИКОНКА ГРОМКОСТИ */
+
+.volume-icon{
+
+    width: 34px;
+}
+
+
+
+/* ТЕКСТ ПЕСНИ */
+
+.lyrics{
+
+    margin-top: 60px;
+
+    font-size: 42px;
+
+    font-family: "Caveat", cursive;
+
+    color: #ffffff;
+}
+
+.photo-wrapper{
+
+    position: relative;
+
+    width: 700px;
+
+    margin: 60px auto;
+}
+
+.love-text{
+
+    position: relative;
+
+    margin-top: -320px;
+
+    text-align: center;
+
+    font-family: "Caveat", cursive;
+
+    font-size: 60px;
+
+    color: rgba(225, 116, 154);
+
+    text-shadow: 0 0 15px rgba(255,255,255,0.8);
+
+}
+
+.letters-section{
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    position: relative;
+
+    margin-top: -60px;
+}
+
+.love-letter{
+
+    width: 850px;
+
+    animation: letterAppear 1.5s ease;
+}
+
+.left-letter{
+
+    position: relative;
+
+    left: -180px;
+
+    margin-bottom: -40px;
+}
+
+.right-letter{
+
+    position: relative;
+
+    left: 180px;
+
+    margin-top: -40px;
+}
+
+@keyframes letterAppear{
+
+    from{
+
+        opacity: 0;
+
+        transform: translateY(80px) scale(0.9);
+    }
+
+    to{
+
+        opacity: 1;
+
+        transform: translateY(0px) scale(1);
+    }
+}
+
+.hearts-between{
+
+    position: relative;
+
+    margin-top: -120px;
+
+    margin-bottom: -120px;
+
+    z-index: 10;
+}
+
+.middle-hearts{
+
+    width: 120px;
+
+    opacity: 0.95;
+
+    animation: heartsFloat 3s ease-in-out infinite;
+}
+
+@keyframes heartsFloat{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-10px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+.music-hearts{
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: -60px;
+
+    margin-bottom: -40px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.music-hearts-img{
+
+    width: 90px;
+
+    opacity: 0.9;
+
+    animation: heartsFloat 3s ease-in-out infinite;
+}
+
+.memories-section{
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: 10px;
+
+    gap: 10px;
+}
+
+.memories-title{
+
+    width: 380px;
+
+    height: auto;
+
+    display: block;
+}
+
+.memories-photo-img{
+
+    width: 700px;
+
+    height: auto;
+
+    display: block;
+
+    animation: photoAppear 1.5s ease;
+}
+
+ </style>   
+</head>
+
+<body>
+
+    <video autoplay muted loop>
+
+    <source src="pinkhearts.mp4" type="video/mp4">
+
+</video>
+
+<div class="card" id="firstScreen">
+
+    <img src="pass.png" class="hug-image">
+
+    <h1>Введи секретный код</h1>
+
+<div class="pin-display">
+
+    <div class="dot" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+    <div class="dot" id="dot4"></div>
+
+</div>
+
+<div class="keypad">
+
+    <button class="key" onclick="addNumber('1')">1</button>
+    <button class="key" onclick="addNumber('2')">2</button>
+    <button class="key" onclick="addNumber('3')">3</button>
+
+    <button class="key" onclick="addNumber('4')">4</button>
+    <button class="key" onclick="addNumber('5')">5</button>
+    <button class="key" onclick="addNumber('6')">6</button>
+
+    <button class="key" onclick="addNumber('7')">7</button>
+    <button class="key" onclick="addNumber('8')">8</button>
+    <button class="key" onclick="addNumber('9')">9</button>
+
+    <div></div>
+
+<button class="key" onclick="addNumber('0')">0</button>
+
+<button class="key delete" onclick="removeNumber()">⌫</button>
+
+</div>
+
+</div> 
+
+<div class="card" id="secondScreen">
+
+    <img src="yes.png" class="hug-image">
+
+    <h1>Ты точно хочешь это открыть?</h1>
+
+<button onclick="showLoadingScreen()">
+    Да
+</button>
+
+    <button onclick="showNoScreen()"> 
+        Нет </button>
+
+</div>
+
+<div id="loadingScreen">
+
+    <h1 class="loading-text" id="loadingText">
+        Урааа!!!
+    </h1>
+
+    <h2 id="clickText">
+    Нажми!!!
+</h2>
+
+    <img src="letter.png" id="letter" onclick="openLetter()">
+
+</div>
+
+<div id="circleTransition"></div>
+
+<div id="mainPage">
+
+    <img src="lent.PNG" id="partyFlags">
+
+    <img src="ballons.png" id="balloons">
+
+    <img src="happyb.PNG" id="birthdayTitle">
+
+    <img src="lapki.png" id="pinkRays">
+
+    <div class="papers-section">
+
+    <img src="bumaga.png" class="section-divider top-divider">
+
+    <div class="top-text">
+    Самая прекрасная девочка в мире
+    </div>
+
+    <div class="photo-wrapper">
+
+    <img src="mbd.png" class="frame-bow">
+
+    <img src="bantik.png" class="dream-text">
+
+    <img src="ramka.png" id="memoryPhoto">
+
+    </div>
+
+    <img src="bumaga.png" class="section-divider">
+
+    <div class="bottom-text">
+    Музыка которая ассоциируется с тобой
+    </div>
+
+    <div class="vinyl-section">
+
+    <!-- ПЕРВЫЙ ТРЕК -->
+    <div class="vinyl-row left-vinyl">
+
+        <div class="vinyl-player">
+
+    <img src="disk1.png" class="vinyl-disc">
+
+    <button class="vinyl-play"
+    onclick="toggleSong('song1', this)">
+
+        <img src="play1.png" class="play-img">
+
+    </button>
+
+    <audio id="song1" src="song1.mp3"></audio>
+
+</div>
+
+        <div class="track-info">
+
+            <h2>BOYS DON'T CRY</h2>
+
+            <p class="artist">GONE.Fludd</p>
+
+            <div class="slider-block">
+
+                <span>0:00</span>
+
+                <input type="range"
+                class="music-slider progress"
+                min="0"
+                max="100"
+                value="0">
+
+                <span>2:17</span>
+
+            </div>
+
+            <div class="slider-block">
+
+                <img src="volume.png" class="volume-icon">
+
+                <input type="range"
+                class="music-slider volume-slider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+                oninput="changeVolume('song1', this)">
+
+                <span>70%</span>
+
+            </div>
+
+            <p class="lyrics">
+                "Ты отрада для глаз моих <br>
+                Когда ты рядом, мир цветет другими красками"
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="music-hearts">
+    <img src="hearts.png" class="music-hearts-img">
+</div>
+
+
+
+    <!-- ВТОРОЙ ТРЕК -->
+    <div class="vinyl-row right-vinyl">
+
+        <div class="vinyl-player">
+
+    <img src="disk1.png" class="vinyl-disc">
+
+    <button class="vinyl-play"
+    onclick="toggleSong('song2', this)">
+
+        <img src="play2.png" class="play-img">
+
+    </button>
+
+    <audio id="song2" src="song2.mp3"></audio>
+
+</div>
+
+        <div class="track-info">
+
+            <h2>Любовь HD1080</h2>
+
+            <p class="artist">Каспийский груз</p>
+
+            <div class="slider-block">
+
+                <span>0:00</span>
+
+                <input type="range"
+                class="music-slider progress"
+                min="0"
+                max="100"
+                value="0">
+
+                <span>3:35</span>
+
+            </div>
+
+            <div class="slider-block">
+
+                <img src="volume.png" class="volume-icon">
+
+                <input type="range"
+                class="music-slider volume-slider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+                oninput="changeVolume('song2', this)">
+
+                <span>70%</span>
+
+            </div>
+
+            <p class="lyrics">
+                "Ты абсолютно везде<br>
+                И абсолютно всегда<br>
+                Ты на земле и в воде<br>
+                Ты все минуты в годах"
+            </p>
+
+        </div>
+
+</div>
+
+<img src="bumaga.png" class="section-divider">
+
+<div class="love-text">
+    Я тебя люблю!
+</div>
+    
+    <div class="letters-section">
+
+    <img src="листик1.png" class="love-letter left-letter">
+
+    <div class="hearts-between">
+    <img src="hearts.png" class="middle-hearts">
+</div>
+
+    <img src="листик2.png" class="love-letter right-letter">
+
+</div>
+
+<div class="memories-section">
+
+    <img src="memories.png" class="memories-title">
+
+    <img src="photos.png" class="memories-photo-img">
+
+</div>
+
+</div>
+    
+<div class="card" id="wrongScreen">
+
+    <img src="wrongpass.png" class="hug-image">
+
+    <h1>Неправильный пароль</h1>
+
+    <button onclick="tryAgain()">
+        Повторить...
+    </button>
+
+</div>    
+
+<div class="card" id="noScreen"> 
+
+    <img src="broken.png" class="hug-image">
+
+    <h1>
+        Ты афигела?
+    </h1>
+
+    <button onclick="goBack()">
+        Изменить ответ
+    </button>
+
+</div>
+
+<script>
+
+function tryAgain() {
+
+    document.getElementById("wrongScreen").style.display = "none";
+
+    document.getElementById("firstScreen").style.display = "block";
+
+}
+
+function showLoadingScreen() {
+
+    document.getElementById("secondScreen").style.display = "none";
+
+    document.getElementById("loadingScreen").style.display = "flex";
+
+    let text = document.getElementById("loadingText");
+
+
+
+    text.innerHTML = "Yeee!!!";
+
+
+
+    setTimeout(() => {
+
+        text.innerHTML = "I love you!";
+
+    }, 3000);
+
+
+
+    setTimeout(() => {
+
+        text.innerHTML = "For the best girl";
+
+    }, 6000);
+
+
+
+    setTimeout(() => {
+
+        text.style.display = "none";
+
+        document.getElementById("letter").style.display = "block";
+
+        document.getElementById("clickText").style.display = "block";
+
+    }, 9000);
+    
+}
+
+function showNoScreen() {
+
+    document.getElementById("secondScreen").style.display = "none";
+
+    document.getElementById("noScreen").style.display = "block";
+
+    document.getElementById("loadingScreen").style.display = "none";
+
+}
+
+
+
+function goBack() {
+
+    document.getElementById("noScreen").style.display = "none";
+
+    document.getElementById("secondScreen").style.display = "block";
+
+    document.getElementById("loadingScreen").style.display = "none";
+
+}
+
+function openLetter() {
+
+    let letter = document.getElementById("letter");
+
+
+
+    letter.style.animation = "shake 0.3s infinite";
+
+
+
+    setTimeout(() => {
+
+        letter.style.transform = "scale(15) rotate(20deg)";
+
+        letter.style.opacity = "0";
+
+    }, 500);
+
+
+
+    setTimeout(() => {
+
+        document.getElementById("loadingScreen").style.display = "none";
+
+
+
+        let circle = document.getElementById("circleTransition");
+
+
+
+        circle.style.display = "block";
+
+        circle.style.width = "3000px";
+
+        circle.style.height = "3000px";
+
+
+
+    }, 1200);
+
+
+
+    setTimeout(() => {
+
+    let circle = document.getElementById("circleTransition");
+
+
+
+    document.getElementById("mainPage").style.display = "block";
+
+
+
+    circle.style.background = "transparent";
+
+
+
+    }, 2400);
+
+}
+
+let pin = "";
+
+function addNumber(number) {
+
+    if(pin.length < 4) {
+
+        pin += number;
+
+        document.getElementById("dot" + pin.length).classList.add("active");
+
+    }
+
+    if(pin.length === 4) {
+
+        checkPin();
+
+    }
+
+}
+
+function clearPin() {
+
+    pin = "";
+
+    document.querySelectorAll(".dot").forEach(dot => {
+
+        dot.classList.remove("active");
+
+    });
+
+}
+
+function checkPin() {
+
+    if(pin === "2305") {
+
+        clearPin();
+
+        document.getElementById("firstScreen").style.display = "none";
+
+        document.getElementById("secondScreen").style.display = "block";
+
+    }
+
+    else {
+
+        setTimeout(() => {
+
+            clearPin();
+
+            document.getElementById("firstScreen").style.display = "none";
+
+            document.getElementById("wrongScreen").style.display = "block";
+
+        }, 300);
+
+    }
+
+}
+
+function removeNumber() {
+
+    if(pin.length > 0) {
+
+        document.getElementById("dot" + pin.length).classList.remove("active");
+
+        pin = pin.slice(0, -1);
+
+    }
+
+}
+
+function toggleSong(songId, button){
+
+    const song = document.getElementById(songId);
+
+    const img = button.querySelector(".play-img");
+
+    if(song.paused){
+
+        song.play();
+
+        if(songId === "song1"){
+            img.src = "pause1.png";
+        } else {
+            img.src = "pause2.png";
+        }
+
+    } else {
+
+        song.pause();
+
+        if(songId === "song1"){
+            img.src = "play1.png";
+        } else {
+            img.src = "play2.png";
+        }
+    }
+}
+
+function changeVolume(songId, slider){
+
+    const song = document.getElementById(songId);
+
+    song.volume = slider.value;
+}
+
+</script>
+
+</body>
+</html> 
